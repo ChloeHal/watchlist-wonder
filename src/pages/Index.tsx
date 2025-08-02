@@ -1,14 +1,100 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState, useEffect } from "react";
+import { supabase } from "@/integrations/supabase/client";
+import { Toaster } from "@/components/ui/toaster";
+import { useToast } from "@/hooks/use-toast";
+import Dashboard from "@/components/Dashboard";
+import MovieSearch from "@/components/MovieSearch";
+import WatchlistSection from "@/components/WatchlistSection";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-const Index = () => {
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
+export default function Index() {
+  const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const { toast } = useToast();
+
+  const fetchMovies = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('movies')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      if (error) throw error;
+      setMovies(data || []);
+    } catch (error) {
+      console.error('Error fetching movies:', error);
+      toast({
+        title: "Erreur",
+        description: "Impossible de charger vos films",
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchMovies();
+  }, []);
+
+  const toWatchMovies = movies.filter(movie => movie.status === 'to_watch');
+  const watchedMovies = movies.filter(movie => movie.status === 'watched');
+
+  if (loading) {
+    return (
+      <div className="container mx-auto px-4 py-8">
+        <div className="flex items-center justify-center h-64">
+          <div className="text-lg">Chargement...</div>
+        </div>
       </div>
+    );
+  }
+
+  return (
+    <div className="container mx-auto px-4 py-8">
+      <h1 className="text-4xl font-bold text-center mb-8">Ma Liste de Films</h1>
+      
+      <Tabs defaultValue="dashboard" className="w-full">
+        <TabsList className="grid w-full grid-cols-4">
+          <TabsTrigger value="dashboard">Dashboard</TabsTrigger>
+          <TabsTrigger value="search">Rechercher</TabsTrigger>
+          <TabsTrigger value="to-watch">À Regarder ({toWatchMovies.length})</TabsTrigger>
+          <TabsTrigger value="watched">Vus ({watchedMovies.length})</TabsTrigger>
+        </TabsList>
+
+        <TabsContent value="dashboard">
+          <Dashboard 
+            toWatchCount={toWatchMovies.length}
+            watchedCount={watchedMovies.length}
+            toWatchMovies={toWatchMovies}
+            onRefresh={fetchMovies}
+          />
+        </TabsContent>
+
+        <TabsContent value="search">
+          <MovieSearch onMovieAdded={fetchMovies} />
+        </TabsContent>
+
+        <TabsContent value="to-watch">
+          <WatchlistSection 
+            movies={toWatchMovies}
+            title="Films à Regarder"
+            status="to_watch"
+            onMovieUpdated={fetchMovies}
+          />
+        </TabsContent>
+
+        <TabsContent value="watched">
+          <WatchlistSection 
+            movies={watchedMovies}
+            title="Films Vus"
+            status="watched"
+            onMovieUpdated={fetchMovies}
+          />
+        </TabsContent>
+      </Tabs>
+
+      <Toaster />
     </div>
   );
-};
-
-export default Index;
+}
