@@ -28,22 +28,36 @@ export default function RandomMovieGenerator({ onMovieAdded }: RandomMovieGenera
   const generateRandomMovie = async () => {
     setLoading(true);
     try {
-      const { data, error } = await supabase.functions.invoke('random-movie');
+      // Récupérer tous les films à regarder depuis votre liste
+      const { data: movies, error } = await supabase
+        .from('movies')
+        .select('*')
+        .eq('status', 'to_watch');
       
       if (error) throw error;
       
-      const movies = data?.results || [];
-      if (movies.length > 0) {
-        // Sélectionner un film au hasard dans les résultats
+      if (movies && movies.length > 0) {
+        // Sélectionner un film au hasard dans votre liste
         const randomIndex = Math.floor(Math.random() * movies.length);
         const randomMovie = movies[randomIndex];
         
-        setSelectedMovie(randomMovie);
+        // Adapter le format pour le popup
+        const formattedMovie = {
+          id: randomMovie.tmdb_id,
+          title: randomMovie.title,
+          overview: randomMovie.overview,
+          poster_path: randomMovie.poster_path,
+          release_date: randomMovie.release_date,
+          vote_average: randomMovie.vote_average,
+          genre_ids: []
+        };
+        
+        setSelectedMovie(formattedMovie);
         setDialogOpen(true);
       } else {
         toast({
-          title: "Aucun film trouvé",
-          description: "Impossible de générer un film aléatoire",
+          title: "Aucun film dans votre liste",
+          description: "Ajoutez des films à votre liste pour utiliser cette fonctionnalité",
           variant: "destructive",
         });
       }
@@ -64,7 +78,7 @@ export default function RandomMovieGenerator({ onMovieAdded }: RandomMovieGenera
       <div className="text-center">
         <h2 className="text-2xl font-bold mb-4">Film au hasard</h2>
         <p className="text-muted-foreground mb-6">
-          Découvrez un film choisi aléatoirement pour vous !
+          Découvrez un film choisi aléatoirement dans votre liste à regarder !
         </p>
         <Button 
           onClick={generateRandomMovie} 
@@ -82,6 +96,7 @@ export default function RandomMovieGenerator({ onMovieAdded }: RandomMovieGenera
         open={dialogOpen}
         onOpenChange={setDialogOpen}
         onMovieAdded={onMovieAdded}
+        isFromPersonalList={true}
       />
     </div>
   );

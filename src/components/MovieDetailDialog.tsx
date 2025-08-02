@@ -20,63 +20,82 @@ interface MovieDetailDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   onMovieAdded: () => void;
+  isFromPersonalList?: boolean;
 }
 
 export default function MovieDetailDialog({ 
   movie, 
   open, 
   onOpenChange, 
-  onMovieAdded 
+  onMovieAdded,
+  isFromPersonalList = false
 }: MovieDetailDialogProps) {
   const { toast } = useToast();
 
   if (!movie) return null;
 
-  const addToWatchlist = async () => {
+  const handleAction = async () => {
     try {
-      // Vérifier si le film existe déjà
-      const { data: existing } = await supabase
-        .from('movies')
-        .select('id')
-        .eq('tmdb_id', movie.id)
-        .single();
+      if (isFromPersonalList) {
+        // Marquer comme vu
+        const { error } = await supabase
+          .from('movies')
+          .update({ status: 'watched' })
+          .eq('tmdb_id', movie.id);
 
-      if (existing) {
+        if (error) throw error;
+
         toast({
-          title: "Film déjà ajouté",
-          description: "Ce film est déjà dans votre liste",
-          variant: "destructive",
+          title: "Film marqué comme vu",
+          description: `${movie.title} a été déplacé vers vos films vus`,
         });
-        return;
+
+        onMovieAdded();
+        onOpenChange(false);
+      } else {
+        // Ajouter à la liste
+        const { data: existing } = await supabase
+          .from('movies')
+          .select('id')
+          .eq('tmdb_id', movie.id)
+          .single();
+
+        if (existing) {
+          toast({
+            title: "Film déjà ajouté",
+            description: "Ce film est déjà dans votre liste",
+            variant: "destructive",
+          });
+          return;
+        }
+
+        const { error } = await supabase
+          .from('movies')
+          .insert({
+            tmdb_id: movie.id,
+            title: movie.title,
+            overview: movie.overview,
+            poster_path: movie.poster_path,
+            release_date: movie.release_date || null,
+            vote_average: movie.vote_average,
+            status: 'to_watch'
+          });
+
+        if (error) throw error;
+
+        toast({
+          title: "Film ajouté",
+          description: `${movie.title} a été ajouté à votre liste`,
+        });
+
+        onMovieAdded();
+        onOpenChange(false);
       }
-
-      // Ajouter le film
-      const { error } = await supabase
-        .from('movies')
-        .insert({
-          tmdb_id: movie.id,
-          title: movie.title,
-          overview: movie.overview,
-          poster_path: movie.poster_path,
-          release_date: movie.release_date || null,
-          vote_average: movie.vote_average,
-          status: 'to_watch'
-        });
-
-      if (error) throw error;
-
-      toast({
-        title: "Film ajouté",
-        description: `${movie.title} a été ajouté à votre liste`,
-      });
-
-      onMovieAdded();
-      onOpenChange(false);
     } catch (error) {
-      console.error("Add movie error:", error);
+      console.error("Action error:", error);
       toast({
         title: "Erreur",
-        description: "Impossible d'ajouter le film",
+        description: isFromPersonalList ? "Impossible de marquer le film comme vu" : "Impossible d'ajouter le film",
         variant: "destructive",
       });
     }
@@ -146,9 +165,9 @@ export default function MovieDetailDialog({
 
             {/* Bouton d'action */}
             <div className="pt-4">
-              <Button onClick={addToWatchlist} className="w-full" size="lg">
+              <Button onClick={handleAction} className="w-full" size="lg">
                 <Plus className="h-4 w-4 mr-2" />
-                Ajouter à ma liste
+                {isFromPersonalList ? "Marquer comme vu" : "Ajouter à ma liste"}
               </Button>
             </div>
           </div>
