@@ -21,8 +21,6 @@ interface MovieSearchProps {
   onMovieAdded: () => void;
 }
 
-const TMDB_API_KEY = "a8eddc7b9c6f83f7b1ebbd7a7a7c4c4c";
-const TMDB_BASE_URL = "https://api.themoviedb.org/3";
 
 export default function MovieSearch({ onMovieAdded }: MovieSearchProps) {
   const [searchQuery, setSearchQuery] = useState("");
@@ -35,14 +33,13 @@ export default function MovieSearch({ onMovieAdded }: MovieSearchProps) {
 
     setLoading(true);
     try {
-      const response = await fetch(
-        `${TMDB_BASE_URL}/search/movie?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(searchQuery)}&language=fr-FR`
-      );
+      const { data, error } = await supabase.functions.invoke('search-movies', {
+        body: { query: searchQuery }
+      });
       
-      if (!response.ok) throw new Error("Erreur lors de la recherche");
+      if (error) throw error;
       
-      const data = await response.json();
-      setSearchResults(data.results || []);
+      setSearchResults(data?.results || []);
     } catch (error) {
       console.error("Search error:", error);
       toast({
