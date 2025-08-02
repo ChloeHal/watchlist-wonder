@@ -56,8 +56,10 @@ export default function MovieSearch({ onMovieAdded }: MovieSearchProps) {
   };
 
   const handleMovieClick = (movie: Movie) => {
+    console.log("Movie clicked:", movie.title);
     setSelectedMovie(movie);
     setDialogOpen(true);
+    console.log("Dialog should open now");
   };
 
   return (
