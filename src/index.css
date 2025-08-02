@@ -102,7 +102,6 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground;
   }
-  }
 
   /* Add line-clamp utilities */
   .line-clamp-2 {
