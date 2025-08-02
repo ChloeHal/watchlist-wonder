@@ -4,6 +4,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { useToast } from "@/hooks/use-toast";
 import Dashboard from "@/components/Dashboard";
 import MovieSearch from "@/components/MovieSearch";
+import RandomMovieGenerator from "@/components/RandomMovieGenerator";
 import WatchlistSection from "@/components/WatchlistSection";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
@@ -55,9 +56,10 @@ export default function Index() {
       <h1 className="text-4xl font-bold text-center mb-8">Ma Liste de Films</h1>
       
       <Tabs defaultValue="dashboard" className="w-full">
-        <TabsList className="grid w-full grid-cols-4">
+        <TabsList className="grid w-full grid-cols-5">
           <TabsTrigger value="dashboard">Dashboard</TabsTrigger>
           <TabsTrigger value="search">Rechercher</TabsTrigger>
+          <TabsTrigger value="random">Film au hasard</TabsTrigger>
           <TabsTrigger value="to-watch">À Regarder ({toWatchMovies.length})</TabsTrigger>
           <TabsTrigger value="watched">Vus ({watchedMovies.length})</TabsTrigger>
         </TabsList>
@@ -73,6 +75,10 @@ export default function Index() {
 
         <TabsContent value="search">
           <MovieSearch onMovieAdded={fetchMovies} />
+        </TabsContent>
+
+        <TabsContent value="random">
+          <RandomMovieGenerator onMovieAdded={fetchMovies} />
         </TabsContent>
 
         <TabsContent value="to-watch">

@@ -3,10 +3,9 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Search } from "lucide-react";
+import { Search, Plus } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
-import MovieDetailDialog from "./MovieDetailDialog";
 
 interface Movie {
   id: number;
@@ -27,8 +26,6 @@ export default function MovieSearch({ onMovieAdded }: MovieSearchProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState<Movie[]>([]);
   const [loading, setLoading] = useState(false);
-  const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
-  const [dialogOpen, setDialogOpen] = useState(false);
   const { toast } = useToast();
 
   const searchMovies = async () => {
@@ -55,11 +52,53 @@ export default function MovieSearch({ onMovieAdded }: MovieSearchProps) {
     }
   };
 
-  const handleMovieClick = (movie: Movie) => {
-    console.log("Movie clicked:", movie.title);
-    setSelectedMovie(movie);
-    setDialogOpen(true);
-    console.log("Dialog should open now");
+  const addToWatchlist = async (movie: Movie) => {
+    try {
+      // Vérifier si le film existe déjà
+      const { data: existing } = await supabase
+        .from('movies')
+        .select('id')
+        .eq('tmdb_id', movie.id)
+        .single();
+
+      if (existing) {
+        toast({
+          title: "Film déjà ajouté",
+          description: "Ce film est déjà dans votre liste",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      // Ajouter le film
+      const { error } = await supabase
+        .from('movies')
+        .insert({
+          tmdb_id: movie.id,
+          title: movie.title,
+          overview: movie.overview,
+          poster_path: movie.poster_path,
+          release_date: movie.release_date || null,
+          vote_average: movie.vote_average,
+          status: 'to_watch'
+        });
+
+      if (error) throw error;
+
+      toast({
+        title: "Film ajouté",
+        description: `${movie.title} a été ajouté à votre liste`,
+      });
+
+      onMovieAdded();
+    } catch (error) {
+      console.error("Add movie error:", error);
+      toast({
+        title: "Erreur",
+        description: "Impossible d'ajouter le film",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
@@ -85,13 +124,18 @@ export default function MovieSearch({ onMovieAdded }: MovieSearchProps) {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {searchResults.map((movie) => (
-          <Card 
-            key={movie.id} 
-            className="h-full cursor-pointer hover:shadow-lg transition-shadow"
-            onClick={() => handleMovieClick(movie)}
-          >
+          <Card key={movie.id} className="h-full">
             <CardHeader className="pb-2">
-              <CardTitle className="text-lg line-clamp-2">{movie.title}</CardTitle>
+              <div className="flex justify-between items-start">
+                <CardTitle className="text-lg line-clamp-2">{movie.title}</CardTitle>
+                <Button
+                  size="sm"
+                  onClick={() => addToWatchlist(movie)}
+                  variant="outline"
+                >
+                  <Plus className="h-4 w-4" />
+                </Button>
+              </div>
             </CardHeader>
             <CardContent className="space-y-2">
               {movie.poster_path && (
@@ -124,13 +168,6 @@ export default function MovieSearch({ onMovieAdded }: MovieSearchProps) {
           <div className="text-lg text-muted-foreground">Aucun résultat trouvé</div>
         </div>
       )}
-
-      <MovieDetailDialog
-        movie={selectedMovie}
-        open={dialogOpen}
-        onOpenChange={setDialogOpen}
-        onMovieAdded={onMovieAdded}
-      />
     </div>
   );
 }
