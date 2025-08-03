@@ -16,14 +16,14 @@ export default function Index() {
   const fetchMovies = async () => {
     try {
       const { data, error } = await supabase
-        .from('movies')
-        .select('*')
-        .order('created_at', { ascending: false });
+        .from("movies")
+        .select("*")
+        .order("created_at", { ascending: false });
 
       if (error) throw error;
       setMovies(data || []);
     } catch (error) {
-      console.error('Error fetching movies:', error);
+      console.error("Error fetching movies:", error);
       toast({
         title: "Erreur",
         description: "Impossible de charger vos films",
@@ -38,8 +38,8 @@ export default function Index() {
     fetchMovies();
   }, []);
 
-  const toWatchMovies = movies.filter(movie => movie.status === 'to_watch');
-  const watchedMovies = movies.filter(movie => movie.status === 'watched');
+  const toWatchMovies = movies.filter((movie) => movie.status === "to_watch");
+  const watchedMovies = movies.filter((movie) => movie.status === "watched");
 
   if (loading) {
     return (
@@ -53,19 +53,25 @@ export default function Index() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-4xl font-bold text-center mb-8">Ma Liste de Films</h1>
-      
+      <h1 className="text-4xl font-bold text-center mb-8">
+        Elo & Crick's moovies
+      </h1>
+
       <Tabs defaultValue="dashboard" className="w-full">
-        <TabsList className="grid w-full grid-cols-5">
+        <TabsList className="inline-flex flex-wrap items-center justify-center rounded-md bg-muted p-1 text-muted-foreground w-full mb-5 h-auto">
           <TabsTrigger value="dashboard">Dashboard</TabsTrigger>
           <TabsTrigger value="search">Rechercher</TabsTrigger>
           <TabsTrigger value="random">Film au hasard</TabsTrigger>
-          <TabsTrigger value="to-watch">À Regarder ({toWatchMovies.length})</TabsTrigger>
-          <TabsTrigger value="watched">Vus ({watchedMovies.length})</TabsTrigger>
+          <TabsTrigger value="to-watch">
+            À Regarder ({toWatchMovies.length})
+          </TabsTrigger>
+          <TabsTrigger value="watched">
+            Vus ({watchedMovies.length})
+          </TabsTrigger>
         </TabsList>
 
         <TabsContent value="dashboard">
-          <Dashboard 
+          <Dashboard
             toWatchCount={toWatchMovies.length}
             watchedCount={watchedMovies.length}
             toWatchMovies={toWatchMovies}
@@ -82,7 +88,7 @@ export default function Index() {
         </TabsContent>
 
         <TabsContent value="to-watch">
-          <WatchlistSection 
+          <WatchlistSection
             movies={toWatchMovies}
             title="Films à Regarder"
             status="to_watch"
@@ -91,7 +97,7 @@ export default function Index() {
         </TabsContent>
 
         <TabsContent value="watched">
-          <WatchlistSection 
+          <WatchlistSection
             movies={watchedMovies}
             title="Films Vus"
             status="watched"
