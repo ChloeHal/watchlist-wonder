@@ -7,22 +7,22 @@ All colors MUST be HSL.
 */
 @layer base {
   :root {
-    --background: 260 25% 97%;
+    --background: 280, 100%, 98.8%;
     --foreground: 220 20% 15%;
 
-    --card: 110 35% 96%;
+    --card: 140, 60%, 99%;
     --card-foreground: 220 20% 15%;
 
     --popover: 110 35% 96%;
     --popover-foreground: 220 20% 15%;
 
-    --primary: 260 45% 40%;
+    --primary: 276.8, 100%, 68%;
     --primary-foreground: 110 30% 95%;
 
     --secondary: 120 30% 88%;
     --secondary-foreground: 260 35% 25%;
 
-    --muted: 130 25% 90%;
+    --muted: 140.5, 59.4%, 87.5%;
     --muted-foreground: 220 18% 45%;
 
     --accent: 260 35% 85%;
@@ -45,13 +45,17 @@ All colors MUST be HSL.
     --sidebar-accent-foreground: 260 35% 25%;
     --sidebar-border: 130 20% 82%;
     --sidebar-ring: 260 45% 65%;
+
+    /* Typography */
+    --font-heading: "Mozilla Headline", sans-serif;
+    --font-body: "Roboto", sans-serif;
   }
 
   .dark {
     --background: 220 25% 8%;
     --foreground: 120 30% 92%;
 
-    --card: 225 20% 12%;
+    --card: 144, 60%, 95.1%;
     --card-foreground: 120 30% 92%;
 
     --popover: 225 20% 12%;
