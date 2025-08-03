@@ -55,7 +55,7 @@ export default function Index() {
     <div className="container mx-auto px-4 py-8">
       <img src={`elocrick.png`} className="rounded mx-auto d-block w-40" />
       <h1 className="text-4xl font-bold text-center mb-8">
-        Elo & Crick's moovies
+        Elo & Crick's movies
       </h1>
 
       <Tabs defaultValue="dashboard" className="w-full">
