@@ -84,7 +84,7 @@ export default function RandomMovieGenerator({ onMovieAdded }: RandomMovieGenera
           onClick={generateRandomMovie} 
           disabled={loading}
           size="lg"
-          className="w-full max-w-sm border-2 border-transparent hover:text-purple-600 hover:border-purple-600 transition-colors"
+          className="w-full max-w-sm bg-primary text-primary-foreground hover:bg-background hover:text-foreground border-2 border-primary hover:border-primary transition-colors"
         >
           <Shuffle className="h-5 w-5 mr-2" />
           {loading ? "Génération..." : "Générer un film au hasard"}
