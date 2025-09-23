@@ -54,7 +54,7 @@ export default function Index() {
   return (
     <div className="container mx-auto px-4 py-8">
       <img src={`elocrick.webp`} className="rounded mx-auto d-block w-40" />
-      <h1 className="text-4xl font-bold text-center mb-8">
+      <h1 className="text-4xl font-bold text-center mb-8 main-title">
         Elo & Crick's movies
       </h1>
 
