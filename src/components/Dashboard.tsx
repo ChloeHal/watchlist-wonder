@@ -52,7 +52,11 @@ export default function Dashboard({ toWatchCount, watchedCount, toWatchMovies, o
       </div>
 
       <div className="flex justify-center">
-        <Button onClick={onRefresh} variant="outline" size="lg">
+        <Button 
+          onClick={onRefresh} 
+          size="lg"
+          className="bg-primary text-primary-foreground hover:bg-background hover:text-foreground border-2 border-primary hover:border-primary transition-colors"
+        >
           Actualiser
         </Button>
       </div>
