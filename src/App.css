@@ -20,9 +20,9 @@
 body {
   font-family: "Figtree", sans-serif;
 }
-/* Seuls les titres principaux utilisent Sigmar One */
+/* Seuls les titres principaux utilisent Cormorant */
 .main-title {
-  font-family: "Sigmar One", cursive !important;
+  font-family: "Cormorant", serif !important;
 }
 @keyframes logo-spin {
   from {

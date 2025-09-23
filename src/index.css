@@ -37,7 +37,7 @@ All colors MUST be HSL.
     --sidebar-border: 35, 25%, 75%; /* Bordure sidebar */
     --sidebar-ring: 320, 31%, 23%; /* #432534 */
     /* Typography */
-    --font-heading: "Sigmar One", cursive;
+    --font-heading: "Cormorant", serif;
     --font-body: "Figtree", sans-serif;
   }
   .dark {
@@ -80,7 +80,7 @@ All colors MUST be HSL.
     @apply bg-background text-foreground font-body;
   }
 
-  /* Seuls les titres de section principaux utilisent Sigmar One */
+  /* Seuls les titres de section principaux utilisent Cormorant */
   .main-title {
     font-family: var(--font-heading);
   }
