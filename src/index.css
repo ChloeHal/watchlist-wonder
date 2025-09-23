@@ -10,14 +10,14 @@ All colors MUST be HSL.
     /* Convertis en HSL pour cohérence avec le système existant */
     --background: 42, 37%, 87%; /* #f5e6cc */
     --foreground: 203, 75%, 7%; /* #04151f */
-    --card: 20, 95%, 38%; /* #c44900 - primary */
-    --card-foreground: 42, 37%, 87%; /* #f5e6cc */
+    --card: 20, 60%, 65%; /* Version plus claire et moins saturée de #c44900 */
+    --card-foreground: 203, 75%, 7%; /* #04151f - texte foncé sur fond clair */
     --popover: 42, 37%, 87%; /* #f5e6cc */
     --popover-foreground: 203, 75%, 7%; /* #04151f */
-    --primary: 320, 31%, 23%; /* #432534 - secondary pour les boutons */
-    --primary-foreground: 42, 37%, 87%; /* #f5e6cc */
-    --secondary: 20, 95%, 38%; /* #c44900 - ancien primary */
-    --secondary-foreground: 42, 37%, 87%; /* #f5e6cc */
+    --primary: 320, 31%, 23%; /* #432534 - boutons primary en prune foncé */
+    --primary-foreground: 42, 37%, 87%; /* #f5e6cc - texte clair sur fond foncé */
+    --secondary: 172, 37%, 23%; /* #245652 - boutons secondary en bleu par défaut */
+    --secondary-foreground: 42, 37%, 87%; /* #f5e6cc - texte clair sur bleu */
     --muted: 42, 30%, 82%; /* Version plus claire de #f5e6cc */
     --muted-foreground: 203, 60%, 25%; /* Version plus claire de #04151f */
     --accent: 172, 37%, 23%; /* #245652 */
@@ -26,11 +26,11 @@ All colors MUST be HSL.
     --destructive-foreground: 42, 37%, 87%; /* #f5e6cc */
     --border: 42, 25%, 75%; /* Version plus foncée de #f5e6cc */
     --input: 42, 25%, 75%; /* Version plus foncée de #f5e6cc */
-    --ring: 320, 31%, 23%; /* #432534 pour le focus des boutons */
+    --ring: 320, 31%, 23%; /* #432534 pour le focus des boutons primary */
     --radius: 0.5rem;
     --sidebar-background: 42, 37%, 87%; /* #f5e6cc */
     --sidebar-foreground: 203, 75%, 7%; /* #04151f */
-    --sidebar-primary: 320, 31%, 23%; /* #432534 - pour cohérence avec les boutons */
+    --sidebar-primary: 172, 37%, 23%; /* #245652 - cohérent avec secondary */
     --sidebar-primary-foreground: 42, 37%, 87%; /* #f5e6cc */
     --sidebar-accent: 42, 30%, 82%; /* Version plus claire de #f5e6cc */
     --sidebar-accent-foreground: 203, 75%, 7%; /* #04151f */
