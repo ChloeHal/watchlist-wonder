@@ -76,7 +76,7 @@ export default function RandomMovieGenerator({ onMovieAdded }: RandomMovieGenera
   return (
     <div className="space-y-6">
       <div className="text-center">
-        <h2 className="text-2xl font-bold mb-4">Film au hasard</h2>
+        <h2 className="text-2xl font-bold mb-4" style={{ color: '#04151f' }}>Film au hasard</h2>
         <p className="text-muted-foreground mb-6">
           Découvrez un film choisi aléatoirement dans votre liste à regarder !
         </p>

@@ -94,7 +94,7 @@ export default function WatchlistSection({ movies, title, status, onMovieUpdated
 
   return (
     <div className="space-y-4">
-      <h2 className="text-2xl font-bold">{title}</h2>
+      <h2 className="text-2xl font-bold" style={{ color: '#04151f' }}>{title}</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {movies.map((movie) => (
           <Card key={movie.id} className="h-full bg-[#c44900]/15 border-[#c44900]/30">
