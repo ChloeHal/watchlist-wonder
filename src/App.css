@@ -20,9 +20,8 @@
 body {
   font-family: "Figtree", sans-serif;
 }
-h1,
-h2,
-h3 {
+/* Seuls les titres principaux utilisent Sigmar One */
+.main-title {
   font-family: "Sigmar One", cursive !important;
 }
 @keyframes logo-spin {
