@@ -17,7 +17,7 @@ export default function Dashboard({ toWatchCount, watchedCount, toWatchMovies, o
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <Card className="bg-secondary/15 border-secondary/30">
+        <Card className="bg-[#c44900]/15 border-[#c44900]/30">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Films à Regarder</CardTitle>
             <Film className="h-4 w-4 text-muted-foreground" />
@@ -28,7 +28,7 @@ export default function Dashboard({ toWatchCount, watchedCount, toWatchMovies, o
           </CardContent>
         </Card>
 
-        <Card className="bg-secondary/15 border-secondary/30">
+        <Card className="bg-[#c44900]/15 border-[#c44900]/30">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Films Vus</CardTitle>
             <Play className="h-4 w-4 text-muted-foreground" />
@@ -39,7 +39,7 @@ export default function Dashboard({ toWatchCount, watchedCount, toWatchMovies, o
           </CardContent>
         </Card>
 
-        <Card className="bg-secondary/15 border-secondary/30">
+        <Card className="bg-[#c44900]/15 border-[#c44900]/30">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total</CardTitle>
             <Film className="h-4 w-4 text-muted-foreground" />
