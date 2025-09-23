@@ -7,87 +7,67 @@ All colors MUST be HSL.
 */
 @layer base {
   :root {
-    --background: 37.6,67.7%,80.6%;
-    --foreground: 220 20% 15%;
-
-    --card: 140, 60%, 99%;
-    --card-foreground: 220 20% 15%;
-
-    --popover: 110 35% 96%;
-    --popover-foreground: 220 20% 15%;
-
-    --primary: 276.8, 100%, 68%;
-    --primary-foreground: 110 30% 95%;
-
-    --secondary: 120 30% 88%;
-    --secondary-foreground: 260 35% 25%;
-
-    --muted: 140.5, 59.4%, 87.5%;
-    --muted-foreground: 220 18% 45%;
-
-    --accent: 260 35% 85%;
-    --accent-foreground: 260 40% 20%;
-
-    --destructive: 350 70% 65%;
-    --destructive-foreground: 115 25% 96%;
-
-    --border: 130 15% 88%;
-    --input: 130 15% 88%;
-    --ring: 260 40% 60%;
-
+    /* Convertis en HSL pour cohérence avec le système existant */
+    --background: 42, 37%, 87%; /* #f5e6cc */
+    --foreground: 203, 75%, 7%; /* #04151f */
+    --card: 42, 37%, 87%; /* #f5e6cc */
+    --card-foreground: 203, 75%, 7%; /* #04151f */
+    --popover: 42, 37%, 87%; /* #f5e6cc */
+    --popover-foreground: 203, 75%, 7%; /* #04151f */
+    --primary: 20, 95%, 38%; /* #c44900 */
+    --primary-foreground: 42, 37%, 87%; /* #f5e6cc */
+    --secondary: 320, 31%, 23%; /* #432534 */
+    --secondary-foreground: 42, 37%, 87%; /* #f5e6cc */
+    --muted: 42, 30%, 82%; /* Version plus claire de #f5e6cc */
+    --muted-foreground: 203, 60%, 25%; /* Version plus claire de #04151f */
+    --accent: 172, 37%, 23%; /* #245652 */
+    --accent-foreground: 42, 37%, 87%; /* #f5e6cc */
+    --destructive: 350, 70%, 65%; /* Gardé pour les erreurs */
+    --destructive-foreground: 42, 37%, 87%; /* #f5e6cc */
+    --border: 42, 25%, 75%; /* Version plus foncée de #f5e6cc */
+    --input: 42, 25%, 75%; /* Version plus foncée de #f5e6cc */
+    --ring: 20, 95%, 38%; /* #c44900 pour le focus */
     --radius: 0.5rem;
-
-    --sidebar-background: 115 30% 94%;
-    --sidebar-foreground: 220 25% 30%;
-    --sidebar-primary: 260 40% 35%;
-    --sidebar-primary-foreground: 115 25% 94%;
-    --sidebar-accent: 130 25% 88%;
-    --sidebar-accent-foreground: 260 35% 25%;
-    --sidebar-border: 130 20% 82%;
-    --sidebar-ring: 260 45% 65%;
-
+    --sidebar-background: 42, 37%, 87%; /* #f5e6cc */
+    --sidebar-foreground: 203, 75%, 7%; /* #04151f */
+    --sidebar-primary: 20, 95%, 38%; /* #c44900 */
+    --sidebar-primary-foreground: 42, 37%, 87%; /* #f5e6cc */
+    --sidebar-accent: 42, 30%, 82%; /* Version plus claire de #f5e6cc */
+    --sidebar-accent-foreground: 203, 75%, 7%; /* #04151f */
+    --sidebar-border: 42, 25%, 75%; /* Version plus foncée de #f5e6cc */
+    --sidebar-ring: 20, 95%, 38%; /* #c44900 */
     /* Typography */
     --font-heading: "Mozilla Headline", sans-serif;
     --font-body: "Roboto", sans-serif;
   }
-
   .dark {
-    --background: 220 25% 8%;
-    --foreground: 120 30% 92%;
-
-    --card: 144, 60%, 95.1%;
-    --card-foreground: 120 30% 92%;
-
-    --popover: 225 20% 12%;
-    --popover-foreground: 120 30% 92%;
-
-    --primary: 260 50% 75%;
-    --primary-foreground: 220 30% 8%;
-
-    --secondary: 225 15% 18%;
-    --secondary-foreground: 120 25% 88%;
-
-    --muted: 225 12% 16%;
-    --muted-foreground: 130 20% 65%;
-
-    --accent: 260 30% 25%;
-    --accent-foreground: 120 30% 90%;
-
-    --destructive: 350 60% 45%;
-    --destructive-foreground: 120 25% 95%;
-
-    --border: 268 12% 20%;
-    --input: 268 12% 20%;
-    --ring: 260 35% 70%;
-
-    --sidebar-background: 225 20% 6%;
-    --sidebar-foreground: 130 25% 82%;
-    --sidebar-primary: 260 45% 70%;
-    --sidebar-primary-foreground: 225 25% 8%;
-    --sidebar-accent: 225 10% 14%;
-    --sidebar-accent-foreground: 130 20% 78%;
-    --sidebar-border: 225 8% 15%;
-    --sidebar-ring: 260 40% 75%;
+    --background: 203, 75%, 7%; /* #04151f */
+    --foreground: 42, 37%, 87%; /* #f5e6cc */
+    --card: 203, 60%, 12%; /* Version plus claire de #04151f */
+    --card-foreground: 42, 37%, 87%; /* #f5e6cc */
+    --popover: 203, 70%, 10%; /* Version plus foncée de #04151f */
+    --popover-foreground: 42, 37%, 87%; /* #f5e6cc */
+    --primary: 20, 95%, 38%; /* #c44900 */
+    --primary-foreground: 42, 37%, 87%; /* #f5e6cc */
+    --secondary: 320, 31%, 23%; /* #432534 */
+    --secondary-foreground: 42, 37%, 87%; /* #f5e6cc */
+    --muted: 203, 50%, 15%; /* Version plus claire de #04151f */
+    --muted-foreground: 42, 30%, 70%; /* Version plus foncée de #f5e6cc */
+    --accent: 172, 37%, 23%; /* #245652 */
+    --accent-foreground: 42, 37%, 87%; /* #f5e6cc */
+    --destructive: 350, 60%, 45%; /* Version plus foncée pour le thème sombre */
+    --destructive-foreground: 42, 37%, 87%; /* #f5e6cc */
+    --border: 203, 40%, 20%; /* Version plus claire de #04151f */
+    --input: 203, 40%, 20%; /* Version plus claire de #04151f */
+    --ring: 20, 95%, 45%; /* Version plus claire de #c44900 */
+    --sidebar-background: 203, 70%, 5%; /* Version plus foncée de #04151f */
+    --sidebar-foreground: 42, 37%, 87%; /* #f5e6cc */
+    --sidebar-primary: 20, 95%, 45%; /* Version plus claire de #c44900 */
+    --sidebar-primary-foreground: 203, 75%, 7%; /* #04151f */
+    --sidebar-accent: 203, 50%, 12%; /* Version plus claire de #04151f */
+    --sidebar-accent-foreground: 42, 30%, 75%; /* Version plus foncée de #f5e6cc */
+    --sidebar-border: 203, 35%, 18%; /* Version plus claire de #04151f */
+    --sidebar-ring: 20, 95%, 50%; /* Version plus claire de #c44900 */
   }
 }
 
