@@ -97,7 +97,7 @@ export default function WatchlistSection({ movies, title, status, onMovieUpdated
       <h2 className="text-2xl font-bold">{title}</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {movies.map((movie) => (
-          <Card key={movie.id} className="h-full">
+          <Card key={movie.id} className="h-full bg-[#c44900]/15 border-[#c44900]/30">
             <CardHeader className="pb-2">
               <CardTitle className="text-lg line-clamp-2">{movie.title}</CardTitle>
             </CardHeader>
@@ -111,11 +111,11 @@ export default function WatchlistSection({ movies, title, status, onMovieUpdated
               )}
               <div className="flex justify-between text-sm text-muted-foreground">
                 <span>{movie.release_date ? new Date(movie.release_date).getFullYear() : 'N/A'}</span>
-                {movie.vote_average > 0 && (
-                  <Badge variant="secondary">
-                    ⭐ {movie.vote_average.toFixed(1)}
-                  </Badge>
-                )}
+                 {movie.vote_average > 0 && (
+                   <Badge variant="secondary" className="bg-[#245652] text-white hover:bg-[#245652]/80">
+                     ⭐ {movie.vote_average.toFixed(1)}
+                   </Badge>
+                 )}
               </div>
               {movie.overview && (
                 <p className="text-sm text-muted-foreground line-clamp-3 mb-3">
