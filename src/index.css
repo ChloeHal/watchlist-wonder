@@ -7,67 +7,67 @@ All colors MUST be HSL.
 */
 @layer base {
   :root {
-    /* Convertis en HSL pour cohérence avec le système existant */
-    --background: 42, 37%, 87%; /* #f5e6cc */
-    --foreground: 203, 75%, 7%; /* #04151f */
-    --card: 20, 60%, 65%; /* Version plus claire et moins saturée de #c44900 */
-    --card-foreground: 203, 75%, 7%; /* #04151f - texte foncé sur fond clair */
-    --popover: 42, 37%, 87%; /* #f5e6cc */
+    /* Couleurs d'automne */
+    --background: 35, 45%, 92%; /* Beige chaud automnal */
+    --foreground: 203, 75%, 7%; /* #04151f - texte principal */
+    --card: 35, 40%, 88%; /* Carte légèrement plus foncée que le fond */
+    --card-foreground: 203, 75%, 7%; /* #04151f - texte sur carte */
+    --popover: 35, 45%, 92%; /* Même que background */
     --popover-foreground: 203, 75%, 7%; /* #04151f */
-    --primary: 320, 31%, 23%; /* #432534 - boutons primary en prune foncé */
-    --primary-foreground: 42, 37%, 87%; /* #f5e6cc - texte clair sur fond foncé */
-    --secondary: 172, 37%, 23%; /* #245652 - boutons secondary en bleu par défaut */
-    --secondary-foreground: 42, 37%, 87%; /* #f5e6cc - texte clair sur bleu */
-    --muted: 42, 30%, 82%; /* Version plus claire de #f5e6cc */
-    --muted-foreground: 203, 60%, 25%; /* Version plus claire de #04151f */
-    --accent: 172, 37%, 23%; /* #245652 */
-    --accent-foreground: 42, 37%, 87%; /* #f5e6cc */
-    --destructive: 350, 70%, 65%; /* Gardé pour les erreurs */
-    --destructive-foreground: 42, 37%, 87%; /* #f5e6cc */
-    --border: 42, 25%, 75%; /* Version plus foncée de #f5e6cc */
-    --input: 42, 25%, 75%; /* Version plus foncée de #f5e6cc */
-    --ring: 320, 31%, 23%; /* #432534 pour le focus des boutons primary */
+    --primary: 320, 31%, 23%; /* #432534 - prune foncé */
+    --primary-foreground: 35, 45%, 92%; /* Texte clair sur primary */
+    --secondary: 20, 95%, 38%; /* #c44900 - orange automnal */
+    --secondary-foreground: 35, 45%, 92%; /* Texte clair sur secondary */
+    --muted: 35, 30%, 85%; /* Version plus claire du fond */
+    --muted-foreground: 203, 60%, 25%; /* Texte atténué */
+    --accent: 20, 95%, 38%; /* #c44900 - orange automnal */
+    --accent-foreground: 35, 45%, 92%; /* Texte clair sur accent */
+    --destructive: 350, 70%, 65%; /* Rouge pour erreurs */
+    --destructive-foreground: 35, 45%, 92%; /* Texte clair */
+    --border: 35, 25%, 75%; /* Bordure neutre */
+    --input: 35, 25%, 75%; /* Input neutre */
+    --ring: 320, 31%, 23%; /* #432534 pour focus */
     --radius: 0.5rem;
-    --sidebar-background: 42, 37%, 87%; /* #f5e6cc */
+    --sidebar-background: 35, 45%, 92%; /* Fond sidebar */
     --sidebar-foreground: 203, 75%, 7%; /* #04151f */
-    --sidebar-primary: 172, 37%, 23%; /* #245652 - cohérent avec secondary */
-    --sidebar-primary-foreground: 42, 37%, 87%; /* #f5e6cc */
-    --sidebar-accent: 42, 30%, 82%; /* Version plus claire de #f5e6cc */
+    --sidebar-primary: 320, 31%, 23%; /* #432534 */
+    --sidebar-primary-foreground: 35, 45%, 92%; /* Texte clair */
+    --sidebar-accent: 35, 30%, 85%; /* Accent sidebar */
     --sidebar-accent-foreground: 203, 75%, 7%; /* #04151f */
-    --sidebar-border: 42, 25%, 75%; /* Version plus foncée de #f5e6cc */
+    --sidebar-border: 35, 25%, 75%; /* Bordure sidebar */
     --sidebar-ring: 320, 31%, 23%; /* #432534 */
     /* Typography */
     --font-heading: "Mozilla Headline", sans-serif;
     --font-body: "Roboto", sans-serif;
   }
   .dark {
-    --background: 203, 75%, 7%; /* #04151f */
-    --foreground: 42, 37%, 87%; /* #f5e6cc */
-    --card: 203, 60%, 12%; /* Version plus claire de #04151f pour cards sombres */
-    --card-foreground: 42, 37%, 87%; /* #f5e6cc */
-    --popover: 203, 70%, 10%; /* Version plus foncée de #04151f */
-    --popover-foreground: 42, 37%, 87%; /* #f5e6cc */
-    --primary: 320, 31%, 23%; /* #432534 - secondary pour les boutons */
-    --primary-foreground: 42, 37%, 87%; /* #f5e6cc */
-    --secondary: 20, 95%, 38%; /* #c44900 - ancien primary */
-    --secondary-foreground: 42, 37%, 87%; /* #f5e6cc */
-    --muted: 203, 50%, 15%; /* Version plus claire de #04151f */
-    --muted-foreground: 42, 30%, 70%; /* Version plus foncée de #f5e6cc */
-    --accent: 172, 37%, 23%; /* #245652 */
-    --accent-foreground: 42, 37%, 87%; /* #f5e6cc */
-    --destructive: 350, 60%, 45%; /* Version plus foncée pour le thème sombre */
-    --destructive-foreground: 42, 37%, 87%; /* #f5e6cc */
-    --border: 203, 40%, 20%; /* Version plus claire de #04151f */
-    --input: 203, 40%, 20%; /* Version plus claire de #04151f */
-    --ring: 320, 31%, 30%; /* Version plus claire de #432534 */
-    --sidebar-background: 203, 70%, 5%; /* Version plus foncée de #04151f */
-    --sidebar-foreground: 42, 37%, 87%; /* #f5e6cc */
-    --sidebar-primary: 320, 31%, 30%; /* Version plus claire de #432534 pour contraste */
-    --sidebar-primary-foreground: 203, 75%, 7%; /* #04151f */
-    --sidebar-accent: 203, 50%, 12%; /* Version plus claire de #04151f */
-    --sidebar-accent-foreground: 42, 30%, 75%; /* Version plus foncée de #f5e6cc */
-    --sidebar-border: 203, 35%, 18%; /* Version plus claire de #04151f */
-    --sidebar-ring: 320, 31%, 35%; /* Version plus claire de #432534 */
+    --background: 203, 75%, 7%; /* #04151f - fond sombre */
+    --foreground: 35, 45%, 92%; /* Texte clair sur fond sombre */
+    --card: 203, 60%, 12%; /* Carte sombre */
+    --card-foreground: 35, 45%, 92%; /* Texte clair sur carte */
+    --popover: 203, 70%, 10%; /* Popover sombre */
+    --popover-foreground: 35, 45%, 92%; /* Texte clair */
+    --primary: 320, 31%, 23%; /* #432534 - prune foncé */
+    --primary-foreground: 35, 45%, 92%; /* Texte clair sur primary */
+    --secondary: 20, 95%, 38%; /* #c44900 - orange automnal */
+    --secondary-foreground: 35, 45%, 92%; /* Texte clair sur secondary */
+    --muted: 203, 50%, 15%; /* Muted sombre */
+    --muted-foreground: 35, 30%, 70%; /* Texte muted */
+    --accent: 20, 95%, 38%; /* #c44900 - orange automnal */
+    --accent-foreground: 35, 45%, 92%; /* Texte clair sur accent */
+    --destructive: 350, 60%, 45%; /* Rouge sombre */
+    --destructive-foreground: 35, 45%, 92%; /* Texte clair */
+    --border: 203, 40%, 20%; /* Bordure sombre */
+    --input: 203, 40%, 20%; /* Input sombre */
+    --ring: 320, 31%, 30%; /* Ring focus */
+    --sidebar-background: 203, 70%, 5%; /* Sidebar sombre */
+    --sidebar-foreground: 35, 45%, 92%; /* Texte sidebar */
+    --sidebar-primary: 320, 31%, 30%; /* Primary sidebar */
+    --sidebar-primary-foreground: 203, 75%, 7%; /* Texte primary sidebar */
+    --sidebar-accent: 203, 50%, 12%; /* Accent sidebar */
+    --sidebar-accent-foreground: 35, 30%, 75%; /* Texte accent sidebar */
+    --sidebar-border: 203, 35%, 18%; /* Bordure sidebar */
+    --sidebar-ring: 320, 31%, 35%; /* Ring sidebar */
   }
 }
 
