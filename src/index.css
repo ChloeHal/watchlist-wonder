@@ -10,13 +10,13 @@ All colors MUST be HSL.
     /* Convertis en HSL pour cohérence avec le système existant */
     --background: 42, 37%, 87%; /* #f5e6cc */
     --foreground: 203, 75%, 7%; /* #04151f */
-    --card: 42, 37%, 87%; /* #f5e6cc */
-    --card-foreground: 203, 75%, 7%; /* #04151f */
+    --card: 20, 95%, 38%; /* #c44900 - primary */
+    --card-foreground: 42, 37%, 87%; /* #f5e6cc */
     --popover: 42, 37%, 87%; /* #f5e6cc */
     --popover-foreground: 203, 75%, 7%; /* #04151f */
-    --primary: 20, 95%, 38%; /* #c44900 */
+    --primary: 320, 31%, 23%; /* #432534 - secondary pour les boutons */
     --primary-foreground: 42, 37%, 87%; /* #f5e6cc */
-    --secondary: 320, 31%, 23%; /* #432534 */
+    --secondary: 20, 95%, 38%; /* #c44900 - ancien primary */
     --secondary-foreground: 42, 37%, 87%; /* #f5e6cc */
     --muted: 42, 30%, 82%; /* Version plus claire de #f5e6cc */
     --muted-foreground: 203, 60%, 25%; /* Version plus claire de #04151f */
@@ -26,16 +26,16 @@ All colors MUST be HSL.
     --destructive-foreground: 42, 37%, 87%; /* #f5e6cc */
     --border: 42, 25%, 75%; /* Version plus foncée de #f5e6cc */
     --input: 42, 25%, 75%; /* Version plus foncée de #f5e6cc */
-    --ring: 20, 95%, 38%; /* #c44900 pour le focus */
+    --ring: 320, 31%, 23%; /* #432534 pour le focus des boutons */
     --radius: 0.5rem;
     --sidebar-background: 42, 37%, 87%; /* #f5e6cc */
     --sidebar-foreground: 203, 75%, 7%; /* #04151f */
-    --sidebar-primary: 20, 95%, 38%; /* #c44900 */
+    --sidebar-primary: 320, 31%, 23%; /* #432534 - pour cohérence avec les boutons */
     --sidebar-primary-foreground: 42, 37%, 87%; /* #f5e6cc */
     --sidebar-accent: 42, 30%, 82%; /* Version plus claire de #f5e6cc */
     --sidebar-accent-foreground: 203, 75%, 7%; /* #04151f */
     --sidebar-border: 42, 25%, 75%; /* Version plus foncée de #f5e6cc */
-    --sidebar-ring: 20, 95%, 38%; /* #c44900 */
+    --sidebar-ring: 320, 31%, 23%; /* #432534 */
     /* Typography */
     --font-heading: "Mozilla Headline", sans-serif;
     --font-body: "Roboto", sans-serif;
@@ -43,13 +43,13 @@ All colors MUST be HSL.
   .dark {
     --background: 203, 75%, 7%; /* #04151f */
     --foreground: 42, 37%, 87%; /* #f5e6cc */
-    --card: 203, 60%, 12%; /* Version plus claire de #04151f */
+    --card: 203, 60%, 12%; /* Version plus claire de #04151f pour cards sombres */
     --card-foreground: 42, 37%, 87%; /* #f5e6cc */
     --popover: 203, 70%, 10%; /* Version plus foncée de #04151f */
     --popover-foreground: 42, 37%, 87%; /* #f5e6cc */
-    --primary: 20, 95%, 38%; /* #c44900 */
+    --primary: 320, 31%, 23%; /* #432534 - secondary pour les boutons */
     --primary-foreground: 42, 37%, 87%; /* #f5e6cc */
-    --secondary: 320, 31%, 23%; /* #432534 */
+    --secondary: 20, 95%, 38%; /* #c44900 - ancien primary */
     --secondary-foreground: 42, 37%, 87%; /* #f5e6cc */
     --muted: 203, 50%, 15%; /* Version plus claire de #04151f */
     --muted-foreground: 42, 30%, 70%; /* Version plus foncée de #f5e6cc */
@@ -59,15 +59,15 @@ All colors MUST be HSL.
     --destructive-foreground: 42, 37%, 87%; /* #f5e6cc */
     --border: 203, 40%, 20%; /* Version plus claire de #04151f */
     --input: 203, 40%, 20%; /* Version plus claire de #04151f */
-    --ring: 20, 95%, 45%; /* Version plus claire de #c44900 */
+    --ring: 320, 31%, 30%; /* Version plus claire de #432534 */
     --sidebar-background: 203, 70%, 5%; /* Version plus foncée de #04151f */
     --sidebar-foreground: 42, 37%, 87%; /* #f5e6cc */
-    --sidebar-primary: 20, 95%, 45%; /* Version plus claire de #c44900 */
+    --sidebar-primary: 320, 31%, 30%; /* Version plus claire de #432534 pour contraste */
     --sidebar-primary-foreground: 203, 75%, 7%; /* #04151f */
     --sidebar-accent: 203, 50%, 12%; /* Version plus claire de #04151f */
     --sidebar-accent-foreground: 42, 30%, 75%; /* Version plus foncée de #f5e6cc */
     --sidebar-border: 203, 35%, 18%; /* Version plus claire de #04151f */
-    --sidebar-ring: 20, 95%, 50%; /* Version plus claire de #c44900 */
+    --sidebar-ring: 320, 31%, 35%; /* Version plus claire de #432534 */
   }
 }
 
