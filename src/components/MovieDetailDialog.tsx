@@ -165,7 +165,7 @@ export default function MovieDetailDialog({
 
             {/* Bouton d'action */}
             <div className="pt-4">
-              <Button onClick={handleAction} className="w-full" size="lg">
+              <Button onClick={handleAction} className="w-full bg-primary text-primary-foreground hover:bg-background hover:text-foreground border-2 border-primary hover:border-primary transition-colors" size="lg">
                 <Plus className="h-4 w-4 mr-2" />
                 {isFromPersonalList ? "Marquer comme vu" : "Ajouter à ma liste"}
               </Button>
