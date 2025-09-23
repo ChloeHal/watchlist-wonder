@@ -18,12 +18,12 @@
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: "Figtree", sans-serif;
 }
 h1,
 h2,
 h3 {
-  font-family: "Mozilla Headline", sans-serif !important;
+  font-family: "Sigmar One", cursive !important;
 }
 @keyframes logo-spin {
   from {

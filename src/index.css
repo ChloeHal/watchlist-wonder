@@ -37,8 +37,8 @@ All colors MUST be HSL.
     --sidebar-border: 35, 25%, 75%; /* Bordure sidebar */
     --sidebar-ring: 320, 31%, 23%; /* #432534 */
     /* Typography */
-    --font-heading: "Mozilla Headline", sans-serif;
-    --font-body: "Roboto", sans-serif;
+    --font-heading: "Sigmar One", cursive;
+    --font-body: "Figtree", sans-serif;
   }
   .dark {
     --background: 203, 75%, 7%; /* #04151f - fond sombre */
@@ -77,7 +77,11 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-body;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
   }
 
   /* Add line-clamp utilities */
