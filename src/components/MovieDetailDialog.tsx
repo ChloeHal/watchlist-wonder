@@ -126,7 +126,7 @@ export default function MovieDetailDialog({
               {movie.vote_average > 0 && (
                 <div className="flex items-center gap-1">
                   <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                  <span>{movie.vote_average.toFixed(1)}/10</span>
+                  <span>{Number(movie.vote_average).toFixed(1)}/10</span>
                 </div>
               )}
             </div>
@@ -135,7 +135,7 @@ export default function MovieDetailDialog({
             {movie.vote_average > 0 && (
               <div>
                 <Badge variant="secondary" className="text-sm">
-                  ⭐ {movie.vote_average.toFixed(1)}
+                  ⭐ {Number(movie.vote_average).toFixed(1)}
                 </Badge>
               </div>
             )}

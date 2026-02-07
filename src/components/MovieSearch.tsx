@@ -136,7 +136,7 @@ export default function MovieSearch({ onMovieAdded }: MovieSearchProps) {
                 <span>{movie.release_date ? new Date(movie.release_date).getFullYear() : 'N/A'}</span>
                 {movie.vote_average > 0 && (
                   <Badge variant="secondary">
-                    ⭐ {movie.vote_average.toFixed(1)}
+                    ⭐ {Number(movie.vote_average).toFixed(1)}
                   </Badge>
                 )}
               </div>

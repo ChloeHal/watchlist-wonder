@@ -103,7 +103,7 @@ export default function WatchlistSection({ movies, title, status, onMovieUpdated
                 <span>{movie.release_date ? new Date(movie.release_date).getFullYear() : 'N/A'}</span>
                  {movie.vote_average > 0 && (
                    <Badge variant="secondary" className="bg-[#245652] text-white hover:bg-[#245652]/80">
-                     ⭐ {movie.vote_average.toFixed(1)}
+                     ⭐ {Number(movie.vote_average).toFixed(1)}
                    </Badge>
                  )}
               </div>
