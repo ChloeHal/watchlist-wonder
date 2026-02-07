@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Search, Plus } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
+import { searchTMDB, checkMovieExists, insertMovie } from "@/lib/api";
 import { useToast } from "@/hooks/use-toast";
 
 interface Movie {
@@ -33,13 +33,8 @@ export default function MovieSearch({ onMovieAdded }: MovieSearchProps) {
 
     setLoading(true);
     try {
-      const { data, error } = await supabase.functions.invoke('search-movies', {
-        body: { query: searchQuery }
-      });
-      
-      if (error) throw error;
-      
-      setSearchResults(data?.results || []);
+      const results = await searchTMDB(searchQuery);
+      setSearchResults(results);
     } catch (error) {
       console.error("Search error:", error);
       toast({
@@ -55,13 +50,9 @@ export default function MovieSearch({ onMovieAdded }: MovieSearchProps) {
   const addToWatchlist = async (movie: Movie) => {
     try {
       // Vérifier si le film existe déjà
-      const { data: existing } = await supabase
-        .from('movies')
-        .select('id')
-        .eq('tmdb_id', movie.id)
-        .single();
+      const exists = await checkMovieExists(movie.id);
 
-      if (existing) {
+      if (exists) {
         toast({
           title: "Film déjà ajouté",
           description: "Ce film est déjà dans votre liste",
@@ -71,19 +62,15 @@ export default function MovieSearch({ onMovieAdded }: MovieSearchProps) {
       }
 
       // Ajouter le film
-      const { error } = await supabase
-        .from('movies')
-        .insert({
-          tmdb_id: movie.id,
-          title: movie.title,
-          overview: movie.overview,
-          poster_path: movie.poster_path,
-          release_date: movie.release_date || null,
-          vote_average: movie.vote_average,
-          status: 'to_watch'
-        });
-
-      if (error) throw error;
+      await insertMovie({
+        tmdb_id: movie.id,
+        title: movie.title,
+        overview: movie.overview,
+        poster_path: movie.poster_path,
+        release_date: movie.release_date || null,
+        vote_average: movie.vote_average,
+        status: 'to_watch'
+      });
 
       toast({
         title: "Film ajouté",

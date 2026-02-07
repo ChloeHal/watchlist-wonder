@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { supabase } from "@/integrations/supabase/client";
+import { fetchAllMovies } from "@/lib/api";
 import { Toaster } from "@/components/ui/toaster";
 import { useToast } from "@/hooks/use-toast";
 import Dashboard from "@/components/Dashboard";
@@ -15,13 +15,8 @@ export default function Index() {
 
   const fetchMovies = async () => {
     try {
-      const { data, error } = await supabase
-        .from("movies")
-        .select("*")
-        .order("created_at", { ascending: false });
-
-      if (error) throw error;
-      setMovies(data || []);
+      const data = await fetchAllMovies();
+      setMovies(data);
     } catch (error) {
       console.error("Error fetching movies:", error);
       toast({

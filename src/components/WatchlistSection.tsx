@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Eye, EyeOff, Trash2 } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
+import { updateMovieStatus, deleteMovieById } from "@/lib/api";
 import { useToast } from "@/hooks/use-toast";
 
 interface Movie {
@@ -31,12 +31,7 @@ export default function WatchlistSection({ movies, title, status, onMovieUpdated
     try {
       const newStatus = movie.status === 'to_watch' ? 'watched' : 'to_watch';
       
-      const { error } = await supabase
-        .from('movies')
-        .update({ status: newStatus })
-        .eq('id', movie.id);
-
-      if (error) throw error;
+      await updateMovieStatus(movie.id, newStatus);
 
       toast({
         title: newStatus === 'watched' ? "Film marqué comme vu" : "Film remis à regarder",
@@ -56,12 +51,7 @@ export default function WatchlistSection({ movies, title, status, onMovieUpdated
 
   const deleteMovie = async (movie: Movie) => {
     try {
-      const { error } = await supabase
-        .from('movies')
-        .delete()
-        .eq('id', movie.id);
-
-      if (error) throw error;
+      await deleteMovieById(movie.id);
 
       toast({
         title: "Film supprimé",

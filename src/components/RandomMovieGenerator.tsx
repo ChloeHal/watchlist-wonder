@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Shuffle } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
+import { fetchMoviesByStatus } from "@/lib/api";
 import { useToast } from "@/hooks/use-toast";
 import MovieDetailDialog from "./MovieDetailDialog";
 
@@ -29,13 +29,8 @@ export default function RandomMovieGenerator({ onMovieAdded }: RandomMovieGenera
     setLoading(true);
     try {
       // Récupérer tous les films à regarder depuis votre liste
-      const { data: movies, error } = await supabase
-        .from('movies')
-        .select('*')
-        .eq('status', 'to_watch');
-      
-      if (error) throw error;
-      
+      const movies = await fetchMoviesByStatus('to_watch');
+
       if (movies && movies.length > 0) {
         // Sélectionner un film au hasard dans votre liste
         const randomIndex = Math.floor(Math.random() * movies.length);

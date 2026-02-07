@@ -1,0 +1,11 @@
+RewriteEngine On
+
+# Ne pas réécrire les requêtes API
+RewriteRule ^api/ - [L]
+
+# Ne pas réécrire les fichiers et dossiers existants
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Rediriger tout le reste vers index.html (SPA)
+RewriteRule ^ index.html [L]

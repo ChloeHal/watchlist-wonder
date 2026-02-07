@@ -2,7 +2,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, Star, Plus, Clock } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
+import { updateMovieStatusByTmdbId, checkMovieExists, insertMovie } from "@/lib/api";
 import { useToast } from "@/hooks/use-toast";
 
 interface Movie {
@@ -38,12 +38,7 @@ export default function MovieDetailDialog({
     try {
       if (isFromPersonalList) {
         // Marquer comme vu
-        const { error } = await supabase
-          .from('movies')
-          .update({ status: 'watched' })
-          .eq('tmdb_id', movie.id);
-
-        if (error) throw error;
+        await updateMovieStatusByTmdbId(movie.id, 'watched');
 
         toast({
           title: "Film marqué comme vu",
@@ -54,13 +49,9 @@ export default function MovieDetailDialog({
         onOpenChange(false);
       } else {
         // Ajouter à la liste
-        const { data: existing } = await supabase
-          .from('movies')
-          .select('id')
-          .eq('tmdb_id', movie.id)
-          .single();
+        const exists = await checkMovieExists(movie.id);
 
-        if (existing) {
+        if (exists) {
           toast({
             title: "Film déjà ajouté",
             description: "Ce film est déjà dans votre liste",
@@ -69,19 +60,15 @@ export default function MovieDetailDialog({
           return;
         }
 
-        const { error } = await supabase
-          .from('movies')
-          .insert({
-            tmdb_id: movie.id,
-            title: movie.title,
-            overview: movie.overview,
-            poster_path: movie.poster_path,
-            release_date: movie.release_date || null,
-            vote_average: movie.vote_average,
-            status: 'to_watch'
-          });
-
-        if (error) throw error;
+        await insertMovie({
+          tmdb_id: movie.id,
+          title: movie.title,
+          overview: movie.overview,
+          poster_path: movie.poster_path,
+          release_date: movie.release_date || null,
+          vote_average: movie.vote_average,
+          status: 'to_watch'
+        });
 
         toast({
           title: "Film ajouté",
