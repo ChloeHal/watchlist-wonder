@@ -44,25 +44,4 @@ npm run dev
 
 L'application sera accessible sur `http://localhost:8080`.
 
-## Deploiement sur Hostinger
 
-1. Creer une base de donnees MySQL dans hPanel
-2. Executer `schema.sql` dans phpMyAdmin
-3. Uploader le dossier `api/` dans `public_html/api/`
-4. Modifier `api/config.php` sur le serveur avec les vrais identifiants
-5. Executer `npm run build` localement
-6. Uploader le contenu de `dist/` dans `public_html/`
-
-## Structure du projet
-
-```
-src/                  # Code source React
-  components/         # Composants (MovieSearch, WatchlistSection, etc.)
-  lib/api.ts          # Client API (fetch vers le backend PHP)
-  pages/              # Pages de l'application
-api/                  # Backend PHP
-  movies.php          # API REST CRUD pour les films
-  search-tmdb.php     # Proxy vers l'API TMDB
-  config.php          # Configuration DB + cle TMDB (non versionne)
-schema.sql            # Schema MySQL
-```
