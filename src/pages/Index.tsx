@@ -76,7 +76,7 @@ export default function Index() {
         </TabsContent>
 
         <TabsContent value="search">
-          <MovieSearch onMovieAdded={fetchMovies} />
+          <MovieSearch onMovieAdded={fetchMovies} existingTmdbIds={movies.map((m: any) => m.tmdb_id).filter(Boolean)} />
         </TabsContent>
 
         <TabsContent value="random">

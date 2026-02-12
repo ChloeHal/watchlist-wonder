@@ -19,6 +19,7 @@ interface Movie {
 
 interface MovieSearchProps {
   onMovieAdded: () => void;
+  existingTmdbIds: number[];
 }
 
 const GENRES = [
@@ -36,7 +37,7 @@ const GENRES = [
   { id: 53, name: 'Thriller' },
 ];
 
-export default function MovieSearch({ onMovieAdded }: MovieSearchProps) {
+export default function MovieSearch({ onMovieAdded, existingTmdbIds }: MovieSearchProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState<Movie[]>([]);
   const [loading, setLoading] = useState(false);
@@ -75,8 +76,9 @@ export default function MovieSearch({ onMovieAdded }: MovieSearchProps) {
         discoverByGenre(genre.id, 'date'),
         discoverByGenre(genre.id, 'rating'),
       ]);
-      setNewReleases(releases);
-      setTopRated(rated);
+      const idsSet = new Set(existingTmdbIds);
+      setNewReleases(releases.filter((m: Movie) => !idsSet.has(m.id)).slice(0, 10));
+      setTopRated(rated.filter((m: Movie) => !idsSet.has(m.id)).slice(0, 10));
     } catch (error) {
       console.error("Genre discover error:", error);
       toast({

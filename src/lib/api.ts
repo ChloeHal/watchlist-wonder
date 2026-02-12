@@ -91,5 +91,5 @@ export async function discoverByGenre(genreId: number, sort: 'date' | 'rating'):
   const res = await fetch(`${API_BASE}/search-tmdb.php?genre=${genreId}&sort=${sort}`);
   if (!res.ok) throw new Error('Failed to discover movies');
   const json = await res.json();
-  return (json.results || []).slice(0, 10);
+  return json.results || [];
 }
